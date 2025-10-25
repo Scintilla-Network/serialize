@@ -1,0 +1,49 @@
+{
+    "name": "@scintilla-network/serialize",
+    "version": "1.0.0",
+    "description": "Library for serializing and deserializing data",
+    "main": "src/index.js",
+    "type": "module",
+    "exports": {
+        ".": {
+            "browser": "./src/index.js",
+            "import": "./src/index.js",
+            "require": "./src/index.js"
+        }
+    },
+    "scripts": {
+        "test": "litest"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Scintilla-Network/serialize/issues"
+    },
+    "homepage": "https://github.com/Scintilla-Network/serialize#readme",
+    "funding": {
+        "type": "github",
+        "url": "https://github.com/sponsors/Scintilla-Network"
+    },
+    "keywords": [
+        "scintilla",
+        "serialize",
+        "serialization",
+        "deserialization",
+        "json",
+        "uint8array",
+        "buffer",
+        "object",
+        "binary",
+        "data",
+        "encoding",
+        "decoding",
+        "serialization",
+        "deserialization"
+    ],
+    "author": "Scintilla Labs",
+    "dependencies": {
+        "@scintilla-network/keys": "1.3.0"
+    },
+    "devDependencies": {
+        "@scintilla-network/litest": "1.3.1"
+    }
+}
