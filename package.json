@@ -1,6 +1,6 @@
 {
     "name": "@scintilla-network/serialize",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Library for serializing and deserializing data",
     "main": "src/index.js",
     "type": "module",
