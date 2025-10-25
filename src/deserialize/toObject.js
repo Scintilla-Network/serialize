@@ -70,6 +70,7 @@ function deserializeArray(bytes, kindToConstructor) {
         
         let fieldValue = null;
         let fieldValueBytesLength = 0;
+
         switch(fieldType){
             case "string":
                 ({value: fieldValue, length: fieldValueBytesLength} = toString(bytes.subarray(offset)));
@@ -96,10 +97,13 @@ function deserializeArray(bytes, kindToConstructor) {
                 offset += fieldValueBytesLength;
                 break;
             default:
+                if(!kindToConstructor) {
+                    throw new Error(`kindToConstructor is required for primitive types`);
+                }
                 // Then fieldtype is a constructor
                 const constructor = kindToConstructor(fieldType);
                 if(!constructor) {
-                throw new Error(`Unsupported field type ${fieldType}`);
+                    throw new Error(`Unsupported field type ${fieldType} - ${fieldType} is not a constructor`);
                 }
                 offset -= 1;
                 fieldValue = constructor.fromUint8Array(bytes.subarray(offset));
@@ -298,13 +302,13 @@ function toObject(inputArray, kindToConstructor) {
     // Handle based on kind
     if (kindValue === NET_KINDS.PACKEDARRAY) {
         // It's an array, use internal array deserialization
-        return deserializeArray(inputArray);
+        return deserializeArray(inputArray, kindToConstructor);
     } else if (kindValue === NET_KINDS.PACKEDOBJECT) {
         // It's an object, use internal object deserialization
-        return deserializeObject(inputArray);
+        return deserializeObject(inputArray, kindToConstructor);
     } else if (NET_KINDS_ARRAY[kindValue]) {
         if(!kindToConstructor) {
-            throw new Error(`kindToConstructor is required for primitive types`);
+            throw new Error(`kindToConstructor is required for primitive types - ${NET_KINDS_ARRAY[kindValue]}`);
         }
         // It's a primitive with a constructor
         const Constructor = kindToConstructor(NET_KINDS_ARRAY[kindValue]);

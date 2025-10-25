@@ -27,7 +27,6 @@
         "scintilla",
         "serialize",
         "serialization",
-        "deserialization",
         "json",
         "uint8array",
         "buffer",
@@ -36,8 +35,12 @@
         "data",
         "encoding",
         "decoding",
-        "serialization",
-        "deserialization"
+        "complex data",
+        "nested structures",
+        "variable-length encoding",
+        "deterministic serialization",
+        "scintilla network",
+        "netkinds"
     ],
     "author": "Scintilla Labs",
     "dependencies": {
